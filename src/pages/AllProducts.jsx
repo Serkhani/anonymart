@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,14 +9,25 @@ import { Link } from "react-router-dom";
 
 const AllProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [products, setProducts] = useState([])
 
-  const products = [
-    { id: 1, name: "Watch", price: "99", image: watch },
-    { id: 1, name: "Watch", price: "99", image: watch },
-    { id: 1, name: "Watch", price: "99", image: watch },
-    { id: 1, name: "Watch", price: "99", image: watch },
-    // Add more products here
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https:example.com', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        const data = await response.json()
+        setProducts(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchProducts()
+  }, [])
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())

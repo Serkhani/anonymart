@@ -1,22 +1,41 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import watch from '../assets/watch.jpg';
 import Navbar from '../components/Navbar';
 
-const SellProduct = () => {
+const ProductDetails = () => {
   const [loading, setLoading] = useState(false);
+  CONST[product, setProduct] = useState({})
 
   const navigate = useNavigate();
 
-  const product = {
-    image: watch, // Replace with actual image path
-    name: 'Sample Product',
-    description: 'This is a sample product description. It provides details about the product.',
-    price: '$99.99',
-  };
+  // const product = {
+  //   image: watch, // Replace with actual image path
+  //   name: 'Sample Product',
+  //   description: 'This is a sample product description. It provides details about the product.',
+  //   price: '$99.99',
+  // };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch('https:example.com/id', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        const data = await response.json()
+        setProduct(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchProduct()
+  }, [])
 
   const handleBuy = () => {
     setLoading(true);
@@ -62,4 +81,4 @@ const SellProduct = () => {
   );
 };
 
-export default SellProduct;
+export default ProductDetails;

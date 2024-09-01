@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import TokenBalance from "../pages/tokenbalance";
 
 const Navbar = () => {
   const location = useLocation();
@@ -41,6 +42,7 @@ const Navbar = () => {
           >
             Buy Cedi
           </h1>
+          <TokenBalance />
         </div>
       </section>
     </>
