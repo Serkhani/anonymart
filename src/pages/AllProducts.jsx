@@ -1,11 +1,11 @@
+import React, { useState } from "react";
+import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import watch from "../assets/watch.jpg";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 const AllProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");
